@@ -1,0 +1,31 @@
+﻿@model Job.Finder.Application.Models.LoginViewModel
+
+@{
+    Layout = "_EmptyLayout";
+    ViewData["Title"] = "Login";
+}
+
+<body>
+    <div class="center w-25 job-box">
+        <h1 class="text-center text-primary">Login</h1>
+
+        @if (ViewData["ErrorMessage"] != null)
+        {
+            <p class="text-danger">@ViewData["ErrorMessage"]</p>
+        }
+
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <label for="username" class="fw-bold">Username</label>
+                <input type="text" id="username" name="username" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="password" class="fw-bold">Password</label>
+                <input type="password" id="password" name="password" class="form-control" />
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary ">Login</button>
+            </div>
+        </form>
+    </div>
+</body>

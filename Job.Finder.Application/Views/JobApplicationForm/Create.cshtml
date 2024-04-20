@@ -1,0 +1,236 @@
+﻿@model Job.Finder.Application.Models.JobApplicationForm.ApplicationFormViewModel
+
+@{
+    Layout = "_EmptyLayout";
+}
+
+<!-- Views/Application/Create.cshtml -->
+
+
+<section class="job-box">
+    <h2 class="text-center mb-3">Application Form</h2>
+    @if (TempData["ErrorMsg"] != null)
+    {
+        <p class="text-danger">@TempData["ErrorMsg"]</p>
+    }
+    <form asp-action="Create" method="post">
+
+        <div class="job-box mb-3">
+            <h5><u>Basic Details</u></h5>
+            <div class="row mb-3">
+                @* <div class="col-md-3 col-auto">
+                <label class="fw-bold" for="name">Name:</label>
+                <input type="text" id="ApplicationForm.Name" name="name" class="form-control" required>
+                </div> *@
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold" asp-for="ApplicationForm.Name">Name:</label>
+                    <input type="email" asp-for="ApplicationForm.Name" class="form-control" required>
+                    <span asp-validation-for="ApplicationForm.Name" class="text-danger"></span>
+
+                </div>
+
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold" asp-for="ApplicationForm.Email">Email:</label>
+                    <input type="email" asp-for="ApplicationForm.Email" class="form-control" required>
+                    <span asp-validation-for="ApplicationForm.Email" class="text-danger"></span>
+
+                </div>
+
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold" asp-for="ApplicationForm.Address">Address:</label>
+                    <input type="text" asp-for="ApplicationForm.Address" class="form-control" required>
+                    <span asp-validation-for="ApplicationForm.Address" class="text-danger"></span>
+
+                </div>
+
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold" for="ApplicationForm.Gender">Gender:</label>
+                    <select asp-for="ApplicationForm.Gender" class="form-control" required>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                    </select>
+                    <span asp-validation-for="ApplicationForm.Gender" class="text-danger"></span>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold" asp-for="ApplicationForm.Contact">Contact:</label>
+                    <input type="tel" asp-for="ApplicationForm.Contact" class="form-control" required>
+                    <span asp-validation-for="ApplicationForm.Contact" class="text-danger"></span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="job-box mb-3 education-details">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0"><u>Education Details</u></h5>
+                <div>
+                    @* <button type="button" class="btn btn-primary btn-sm add-education mt-2">Add Education</button> *@
+                </div>
+            </div>
+            <div class="education-entry row">
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold">Degree:</label>
+                    <input type="text" asp-for="EducationDetails.Degree" class="form-control" required>
+                    <span asp-validation-for="EducationDetails.Degree" class="text-danger"></span>
+
+                </div>
+
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold">Board/University:</label>
+                    <input type="text" asp-for="EducationDetails.BoardUniversity" class="form-control" required>
+                    <span asp-validation-for="EducationDetails.BoardUniversity" class="text-danger"></span>
+
+                </div>
+
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold">Year:</label>
+                    <input type="number" asp-for="EducationDetails.Year" class="form-control" required>
+                    <span asp-validation-for="EducationDetails.Year" class="text-danger"></span>
+
+                </div>
+
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold">CGPA/Percentage:</label>
+                    <input type="number" asp-for="EducationDetails.CGPA" class="form-control" required>
+                    <span asp-validation-for="EducationDetails.CGPA" class="text-danger"></span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="job-box mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0"><u>Work Experience</u></h5>
+                <div>
+                    @* <button type="button" class="btn btn-primary btn-sm add-work mt-2">Add Work Experience</button> *@
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold">Company:</label>
+                    <input type="text" asp-for="WorkExperiences.Company" class="form-control" required>
+                    <span asp-validation-for="WorkExperiences.Company" class="text-danger"></span>
+
+                </div>
+
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold">Designation:</label>
+                    <input type="text" asp-for="WorkExperiences.Designation" class="form-control" required>
+                    <span asp-validation-for="WorkExperiences.Designation" class="text-danger"></span>
+
+                </div>
+
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold">From:</label>
+                    <input type="date" asp-for="WorkExperiences.From" class="form-control" required>
+                    <span asp-validation-for="WorkExperiences.From" class="text-danger"></span>
+
+                </div>
+
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold">To:</label>
+                    <input type="date" asp-for="WorkExperiences.To" class="form-control">
+                    <span asp-validation-for="WorkExperiences.To" class="text-danger"></span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="known-languages job-box mb-3">
+            <h5><u>Known Languages</u></h5>
+            @for (int i = 0; i < Model.KnownLanguages.Count; i++)
+            {
+                <div class="language-entry row mb-3">
+
+                    <div class="col-md-3 col-auto">
+                        <input type="checkbox" asp-for="@Model.KnownLanguages[i].IsSelected" />
+                        <label class="ml-1 fw-bold">@Model.KnownLanguages[i].Language</label>
+                        <input type="hidden" asp-for="@Model.KnownLanguages[i].Language" />
+                    </div>
+                    <div class="col-md-3 col-auto">
+                        <label class="ml-1 fw-bold">Read: </label>
+                        <input type="checkbox" asp-for="@Model.KnownLanguages[i].Read" />
+                    </div>
+                    <div class="col-md-3 col-auto">
+                        <label class="ml-1 fw-bold">Write: </label>
+                        <input type="checkbox" asp-for="@Model.KnownLanguages[i].Write" />
+                    </div>
+
+                    <div class="col-md-3 col-auto">
+                        <label class="ml-1 fw-bold">Speak: </label>
+                        <input type="checkbox" asp-for="@Model.KnownLanguages[i].Speak" />
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="technical-experience job-box mb-3">
+            <h5><u>Technical Experience</u></h5>
+
+            @for (int i = 0; i < Model.TechnicalExperiences.Count; i++)
+            {
+                <div class="experience-entry row mb-3">
+                    <div class="col-md-3 col-auto">
+                        <input type="checkbox" asp-for="@Model.TechnicalExperiences[i].IsSelected" />
+                        <label class="ml-1 fw-bold">@Model.TechnicalExperiences[i].Technology</label>
+                        <input type="hidden" asp-for="@Model.TechnicalExperiences[i].Technology" />
+                    </div>
+                    <div class="col-md-3 col-auto">
+                        <label class="ml-1 fw-bold">Beginner: </label>
+                        <input type="radio" asp-for="@Model.TechnicalExperiences[i].ExperienceLevel" value="Beginner" />
+                    </div>
+                    <div class="col-md-3 col-auto">
+                        <label class="ml-1 fw-bold">Mediator: </label>
+                        <input type="radio" asp-for="@Model.TechnicalExperiences[i].ExperienceLevel" value="Mediator" />
+                    </div>
+                    <div class="col-md-3 col-auto">
+                        <label class="ml-1 fw-bold">Expert: </label>
+                        <input type="radio" asp-for="@Model.TechnicalExperiences[i].ExperienceLevel" value="Expert" />
+                    </div>
+                </div>
+
+            }
+         </div>
+
+
+        <div class="job-box mb-3">
+            <h5><u>Preferences</u></h5>
+            <div class="row">
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold" asp-for="ApplicationForm.PreferredLocation">Preferred Location:</label>
+                    <select asp-for="ApplicationForm.PreferredLocation" class="form-control" required>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Bangluru">Bangluru</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold" asp-for="ApplicationForm.ExpectedCTC">Expected CTC:</label>
+                    <input type="number" asp-for="ApplicationForm.ExpectedCTC" class="form-control" required>
+                </div>
+
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold" asp-for="ApplicationForm.CurrentCTC">Current CTC:</label>
+                    <input type="number" asp-for="ApplicationForm.CurrentCTC" class="form-control" required>
+                </div>
+
+                <div class="col-md-3 col-auto">
+                    <label class="fw-bold" asp-for="ApplicationForm.NoticePeriod">Notice Period:</label>
+                    <input type="number" asp-for="ApplicationForm.NoticePeriod" class="form-control" required>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</section>
+
+
+

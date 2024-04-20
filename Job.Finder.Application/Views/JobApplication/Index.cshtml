@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Job.Finder.Application.Models.JobApplicationForm.ApplicationForm>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreferredLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedCTC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentCTC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoticePeriod)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PreferredLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpectedCTC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentCTC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoticePeriod)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
